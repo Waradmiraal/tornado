@@ -5,3 +5,7 @@
 ## To Do:
 Automaticly load live when chasers are live 
 
+## Contributers
+
+GerbenP
+WarAdmiraal
