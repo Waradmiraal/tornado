@@ -7,5 +7,6 @@ Automaticly load live when chasers are live
 
 ## Contributers
 
-GerbenP
-WarAdmiraal
+[GerbenP](https://github.com/gerbenp)
+
+[WarAdmiraal](https://github.com/Waradmiraal)
