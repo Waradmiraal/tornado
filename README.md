@@ -3,7 +3,11 @@
 4 livestreams at the same time.
 
 ## To Do:
-Automaticly load live when chasers are live 
+
+
+## Done:
+
+[X] Automaticly load live when chasers are live
 
 ## Contributers
 
