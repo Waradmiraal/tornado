@@ -16,11 +16,12 @@ html, body {
     background-color: #000; /* Black background for contrast */
   }
   
-  /* Styles for video containers to manage layout */
+  /* Styles for video containers to manage layout with borders */
   .video {
     width: 50%; /* Each video takes up half the width in landscape */
     height: 50%; /* Each video takes up half the height in landscape */
     position: relative; /* Setup for absolute positioning of iframe */
+    border: 2px solid red; /* Adding a red border, 2px wide */
   }
   
   /* Full iframe styling to fill the .video container */
