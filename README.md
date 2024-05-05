@@ -2,7 +2,13 @@
 
 4 livestreams at the same time.
 
+When there are no streams online the chasers are sleeping 😴 
+
 ## To Do:
+
+Make nice layout.
+
+Add tornado warnings?
 
 
 ## Done:
