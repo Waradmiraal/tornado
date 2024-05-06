@@ -24,6 +24,5 @@ When there are no streams online the chasers are sleeping 😴
 
 ## Contributors
 
-[GerbenP](https://github.com/gerbenp)
-
-[WarAdmiraal](https://github.com/Waradmiraal)
+- [GerbenP](https://github.com/gerbenp)
+- [WarAdmiraal](https://github.com/Waradmiraal)
