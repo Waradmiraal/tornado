@@ -1,4 +1,4 @@
-[![Tornado](https://raw.githubusercontent.com/Waradmiraal/tornado/main/logo.png](https://waradmiraal.github.io/tornado/)
+<a href="https://waradmiraal.github.io/tornado/" target="_blank"><img src="https://raw.githubusercontent.com/Waradmiraal/tornado/main/logo.png" width="400" alt="Tornado logo"></a>
 
 ## Introduction:
 
