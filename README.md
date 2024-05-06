@@ -1,4 +1,6 @@
-# [Tornado.github.io](https://waradmiraal.github.io/tornado/)
+[![Tornado](https://raw.githubusercontent.com/Waradmiraal/tornado/main/logo.png](https://waradmiraal.github.io/tornado/)
+
+## Introduction:
 
 4 livestreams at the same time.
 
@@ -6,7 +8,7 @@ When there are no streams online the chasers are sleeping 😴
 
 ## To Do:
 
-- [] Make an toggle to hide the sidebar and header
+- [ ] Make an toggle to hide the sidebar and header
 
 
 ## Done:
@@ -15,12 +17,12 @@ When there are no streams online the chasers are sleeping 😴
 - [X] Add tornado warnings
 - [X] Make nice layout
 
-## Usefull
+## Useful links
 
-[GET YOUTUBE CHANNEL ID](https://commentpicker.com/youtube-channel-id.php)
-[Twitter feed NWStornado](https://twitter.com/NWStornado)
+- [GET YOUTUBE CHANNEL ID](https://commentpicker.com/youtube-channel-id.php)
+- [Twitter feed NWStornado](https://twitter.com/NWStornado)
 
-## Contributers
+## Contributors
 
 [GerbenP](https://github.com/gerbenp)
 
