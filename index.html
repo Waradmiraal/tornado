@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tornado Grid</title>
   <style>
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       height: 100%;
@@ -18,18 +17,18 @@
 
     body {
       display: grid;
-      grid-template-columns: auto 300px; /* Allocate space for sidebar */
+      grid-template-columns: auto 300px; /* Sidebar space */
       grid-template-rows: auto 1fr;
       background-color: #000;
     }
 
     nav {
-      grid-column: 1 / -1; /* Stretch nav bar across full width */
+      grid-column: 1 / -1; /* Full width */
       background-color: #555D50;
       color: #fff;
       padding: 10px 20px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between; /* Adjust for space-between elements */
       align-items: center;
     }
 
@@ -79,30 +78,44 @@
       padding: 20px;
       overflow-y: auto;
     }
+
+    /* Toggle visibility */
+    .sidebar.hidden {
+      display: none;
+    }
+
+    /* Adjust grid when sidebar is hidden */
+    .grid-no-sidebar {
+      grid-template-columns: 1fr;
+    }
   </style>
 </head>
 
 <body>
   <nav>
     <img src="logo.png" alt="Logo" class="logo">
+    <button onclick="toggleSidebar()">Toggle Sidebar</button>
   </nav>
-
+   <!-- Reed Timmer -->
   <div class="videos">
     <div class="video">
       <iframe src="https://www.youtube.com/embed/live_stream?channel=UCV6hWxB0-u_IX7e-h4fEBAw&autoplay=1&mute=1" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
+    <!-- Storm Chaser Brandon Copic -->    
     <div class="video">
       <iframe src="https://www.youtube.com/embed/live_stream?channel=UCPqLI_AohMn1jnFg8ocMyHA&autoplay=1&mute=1" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
+    <!-- Connor Croff -->  
     <div class="video">
       <iframe src="https://www.youtube.com/embed/live_stream?channel=UCb0U1g5r4kH_NDMGiGRhysA&autoplay=1&mute=1" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
+   <!-- StormChaserIRL -->
     <div class="video">
       <iframe src="https://www.youtube.com/embed/live_stream?channel=UCXUU-_dJ-eGBh3-bjPNsalQ&autoplay=1&mute=1" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -112,8 +125,18 @@
 
   <!-- Sidebar for Tweets -->
   <div class="sidebar">
-    <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/NWStornado?ref_src=twsrc%5Etfw">Tweets by NWStornado</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/NWStornado?ref_src=twsrc%5Etfw">Tweets by NWStornado</a> 
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      const body = document.querySelector('body');
+      sidebar.classList.toggle('hidden');
+      body.classList.toggle('grid-no-sidebar');
+    }
+  </script>
 
 </body>
 

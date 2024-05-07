@@ -8,7 +8,7 @@ When there are no streams online the chasers are sleeping 😴
 
 ## To Do:
 
-- [ ] Make an toggle to hide the sidebar and header
+
 
 
 ## Done:
@@ -16,6 +16,7 @@ When there are no streams online the chasers are sleeping 😴
 - [X] Automaticly load live when chasers are live
 - [X] Add tornado warnings
 - [X] Make nice layout
+- [X] Make an toggle to hide the sidebar
 
 ## Useful links
 
