@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,47 +87,46 @@
     .grid-no-sidebar {
       grid-template-columns: 1fr;
     }
+
+    /* Responsive adjustments for small screens */
+    @media (max-width: 600px) {
+      .videos {
+        grid-template-columns: 1fr; /* Stack videos vertically */
+      }
+    }
   </style>
 </head>
-
 <body>
   <nav>
     <img src="logo.png" alt="Logo" class="logo">
     <button onclick="toggleSidebar()">Toggle Sidebar</button>
   </nav>
-   <!-- Reed Timmer -->
   <div class="videos">
     <div class="video">
       <iframe src="https://www.youtube.com/embed/live_stream?channel=UCV6hWxB0-u_IX7e-h4fEBAw&autoplay=1&mute=1" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
-    <!-- Storm Chaser Brandon Copic -->    
     <div class="video">
       <iframe src="https://www.youtube.com/embed/live_stream?channel=UCPqLI_AohMn1jnFg8ocMyHA&autoplay=1&mute=1" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
-    <!-- Connor Croff -->  
     <div class="video">
       <iframe src="https://www.youtube.com/embed/live_stream?channel=UCb0U1g5r4kH_NDMGiGRhysA&autoplay=1&mute=1" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
-   <!-- StormChaserIRL -->
     <div class="video">
       <iframe src="https://www.youtube.com/embed/live_stream?channel=UCXUU-_dJ-eGBh3-bjPNsalQ&autoplay=1&mute=1" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
   </div>
-
-  <!-- Sidebar for Tweets -->
   <div class="sidebar">
     <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/NWStornado?ref_src=twsrc%5Etfw">Tweets by NWStornado</a> 
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </div>
-
   <script>
     function toggleSidebar() {
       const sidebar = document.querySelector('.sidebar');
@@ -137,7 +135,5 @@
       body.classList.toggle('grid-no-sidebar');
     }
   </script>
-
 </body>
-
 </html>
