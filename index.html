@@ -365,6 +365,15 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
+    }
+
+    .sidebar-section > a,
+    .sidebar-section > img {
+      overflow: hidden;
+    }
+
+    .sidebar-section:last-child {
+      border-radius: var(--radius);
       overflow: hidden;
     }
 
@@ -446,8 +455,23 @@
 
     /* ─── Alerts feed ─── */
     .alerts-list {
-      max-height: 300px;
+      max-height: 350px;
       overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .alerts-list::-webkit-scrollbar {
+      width: 5px;
+    }
+    .alerts-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .alerts-list::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+    .alerts-list::-webkit-scrollbar-thumb:hover {
+      background: #3f3f46;
     }
 
     .alert-item {
@@ -691,6 +715,12 @@
       grid-template-columns: 1fr;
     }
 
+    /* Hide mobile-only elements on desktop */
+    .sidebar-close,
+    .mobile-tabs {
+      display: none;
+    }
+
     /* ─── Scrollbar ─── */
     .sidebar::-webkit-scrollbar {
       width: 6px;
@@ -715,40 +745,237 @@
 
     @media (max-width: 700px) {
       html, body {
-        overflow-y: auto;
-        overflow-x: hidden;
+        height: 100%;
+        overflow: hidden;
       }
 
       body {
         grid-template-columns: 1fr;
-        grid-template-rows: var(--nav-height) auto;
+        grid-template-rows: var(--nav-height) 1fr;
+      }
+
+      :root {
+        --nav-height: 52px;
+      }
+
+      nav {
+        padding: 0 10px;
+        gap: 6px;
+      }
+
+      .nav-brand {
+        flex-shrink: 0;
+      }
+
+      .logo {
+        height: 26px;
+      }
+
+      .nav-actions {
+        gap: 5px;
+        flex-shrink: 0;
+      }
+
+      .btn-toggle {
+        padding: 7px 9px;
+        font-size: 0;
+        gap: 0;
+        border-radius: 6px;
+      }
+
+      .btn-toggle svg,
+      .btn-toggle .sound-icon-on,
+      .btn-toggle .sound-icon-off {
+        width: 16px;
+        height: 16px;
+      }
+
+      .live-badge {
+        display: none;
       }
 
       .sidebar {
         display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        border-left: none;
+        border-radius: 0;
+        padding: 16px;
+        padding-top: 60px;
+        background: var(--bg-sidebar);
+        overflow-y: auto;
+      }
+
+      .sidebar.mobile-open {
+        display: flex;
+      }
+
+      .sidebar-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        z-index: 51;
+      }
+
+      .sidebar-close svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* Mobile tabs */
+      .mobile-tabs {
+        display: flex;
+        gap: 0;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 3px;
+        margin-bottom: 8px;
+        flex-shrink: 0;
+      }
+
+      .mobile-tab {
+        flex: 1;
+        padding: 8px 4px;
+        text-align: center;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        background: none;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all var(--transition);
+      }
+
+      .mobile-tab.active {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .mobile-tab-icon {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 2px;
+      }
+
+      .sidebar-section {
+        display: none;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .sidebar-section.mobile-visible {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .sidebar-section .alerts-list {
+        max-height: none;
+        overflow-y: auto;
+        flex: 1;
+      }
+
+      .sidebar-section a:has(img),
+      .sidebar-section img {
+        flex: 1;
+        min-height: 0;
+        object-fit: contain;
+      }
+
+      .sidebar {
+        gap: 8px;
       }
 
       .videos {
         grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        overflow: visible;
+        grid-template-rows: repeat(4, 1fr);
+        overflow: hidden;
+        gap: 5px;
+        padding: 5px;
       }
 
       .video {
-        aspect-ratio: 16 / 9;
-      }
-
-      .nav-title {
-        display: none;
-      }
-
-      .kbd-hint {
-        display: none;
+        aspect-ratio: auto;
+        border-radius: 8px;
       }
 
       .video-overlay {
         opacity: 1;
         transform: translateY(0);
+        padding: 0 8px 5px;
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 60%, transparent);
+        align-items: center;
+        height: 32px;
+      }
+
+      .video-label {
+        font-size: 0.7rem;
+      }
+
+      .video-link {
+        font-size: 0;
+        padding: 4px 6px;
+        gap: 0;
+      }
+
+      .video-link svg {
+        width: 10px;
+        height: 10px;
+      }
+
+      .video-expand {
+        width: 24px;
+        height: 24px;
+      }
+
+      .video-expand svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .video-offline svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .video-offline-name {
+        font-size: 0.8rem;
+      }
+
+      .video-offline-status {
+        font-size: 0.68rem;
+      }
+
+      .video-offline-link {
+        padding: 5px 12px;
+        font-size: 0.7rem;
+      }
+
+      .video-offline {
+        gap: 6px;
+        padding: 8px;
+      }
+
+      .kbd-hint,
+      .btn-help {
+        display: none;
+      }
+
+      .nav-title {
+        display: none;
       }
     }
 
@@ -906,27 +1133,31 @@
       height: 14px;
     }
 
-    /* ─── Keyboard hints ─── */
+    /* ─── Keyboard hints (popup) ─── */
     .kbd-hint {
-      position: fixed;
-      bottom: 12px;
+      position: absolute;
+      top: calc(var(--nav-height) + 4px);
       right: 12px;
-      background: rgba(20, 20, 31, 0.92);
+      background: rgba(20, 20, 31, 0.95);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 10px 14px;
-      font-size: 0.68rem;
+      padding: 12px 16px;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      z-index: 20;
-      backdrop-filter: blur(8px);
-      line-height: 1.7;
-      pointer-events: none;
-      opacity: 0.6;
-      transition: opacity var(--transition);
+      z-index: 40;
+      backdrop-filter: blur(12px);
+      line-height: 1.8;
+      pointer-events: auto;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      visibility: hidden;
     }
 
-    .kbd-hint:hover {
+    .kbd-hint.visible {
       opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
     }
 
     .kbd-hint kbd {
@@ -939,6 +1170,31 @@
       font-size: 0.65rem;
       color: var(--text-secondary);
       margin: 0 2px;
+    }
+
+    .btn-help {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: inherit;
+      flex-shrink: 0;
+    }
+
+    .btn-help:hover,
+    .btn-help.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
     }
 
     /* ─── Toast notification ─── */
@@ -1040,6 +1296,7 @@
         <svg class="sound-icon-off" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z"/></svg>
         Sound
       </button>
+      <button class="btn-help" id="btnHelp" title="Keyboard shortcuts (?)">?</button>
       <button class="btn-toggle" onclick="toggleSidebar()">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -1121,8 +1378,8 @@
 
   </aside>
 
-  <!-- Keyboard shortcuts hint -->
-  <div class="kbd-hint">
+  <!-- Keyboard shortcuts popup -->
+  <div class="kbd-hint" id="kbdHint">
     <kbd>1</kbd>–<kbd>4</kbd> Focus &nbsp;
     <kbd>Esc</kbd> Grid &nbsp;
     <kbd>F</kbd> Fullscreen<br>
@@ -1312,6 +1569,13 @@
         toggleAlertSound();
         return;
       }
+
+      // ?: toggle keyboard shortcuts
+      if (e.key === '?') {
+        e.preventDefault();
+        document.getElementById('btnHelp')?.click();
+        return;
+      }
     });
 
     // ─── Live NWS Severe Weather Alerts ───
@@ -1481,12 +1745,61 @@
     setInterval(refreshSPCImages, 300000);
 
     // ─── Sidebar toggle + localStorage ───
+    const isMobile = () => window.innerWidth <= 700;
+
     function toggleSidebar() {
       const sidebar = document.querySelector('.sidebar');
-      sidebar.classList.toggle('hidden');
-      document.body.classList.toggle('grid-no-sidebar');
-      localStorage.setItem('sidebarHidden', sidebar.classList.contains('hidden'));
+      if (isMobile()) {
+        sidebar.classList.toggle('mobile-open');
+      } else {
+        sidebar.classList.toggle('hidden');
+        document.body.classList.toggle('grid-no-sidebar');
+        localStorage.setItem('sidebarHidden', sidebar.classList.contains('hidden'));
+      }
     }
+
+    // Add close button + mobile tabs to sidebar
+    (function() {
+      const sidebar = document.querySelector('.sidebar');
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'sidebar-close';
+      closeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>';
+      closeBtn.addEventListener('click', () => sidebar.classList.remove('mobile-open'));
+      sidebar.prepend(closeBtn);
+
+      // Build mobile tab bar
+      const sections = sidebar.querySelectorAll('.sidebar-section');
+      const tabDefs = [
+        { icon: '⚠️', label: 'Alerts' },
+        { icon: '🌤', label: 'Outlook' },
+        { icon: '👁', label: 'Watches' },
+        { icon: '📍', label: 'Reports' },
+        { icon: '💬', label: 'MD' },
+      ];
+
+      const tabBar = document.createElement('div');
+      tabBar.className = 'mobile-tabs';
+
+      tabDefs.forEach((def, i) => {
+        if (!sections[i]) return;
+        const btn = document.createElement('button');
+        btn.className = 'mobile-tab' + (i === 0 ? ' active' : '');
+        btn.innerHTML = `<span class="mobile-tab-icon">${def.icon}</span>${def.label}`;
+        btn.addEventListener('click', () => {
+          tabBar.querySelectorAll('.mobile-tab').forEach(t => t.classList.remove('active'));
+          btn.classList.add('active');
+          sections.forEach(s => s.classList.remove('mobile-visible'));
+          sections[i].classList.add('mobile-visible');
+        });
+        tabBar.appendChild(btn);
+      });
+
+      // Insert tab bar after close button
+      sidebar.insertBefore(tabBar, sidebar.children[1]);
+
+      // Show first section by default on mobile
+      if (sections[0]) sections[0].classList.add('mobile-visible');
+    })();
 
     // ─── Auto-cycle through streams ───
     let cycleInterval = null;
@@ -1499,6 +1812,13 @@
         cycleInterval = null;
         btn.classList.remove('active');
         document.querySelectorAll('.cycle-ring').forEach(r => r.classList.remove('active'));
+        // Return to grid view
+        if (focusedTile) {
+          focusedTile.classList.remove('focused');
+          videoGrid.classList.remove('has-focus');
+          focusedTile = null;
+          localStorage.setItem('focusedTile', '');
+        }
         showToast('Auto-cycle off');
       } else {
         const tiles = document.querySelectorAll('.video');
@@ -1600,6 +1920,23 @@
     }
 
     initAlertSoundBtn();
+
+    // ─── Help button toggle ───
+    (function() {
+      const btn = document.getElementById('btnHelp');
+      const hint = document.getElementById('kbdHint');
+      if (!btn || !hint) return;
+      btn.addEventListener('click', () => {
+        const open = hint.classList.toggle('visible');
+        btn.classList.toggle('active', open);
+      });
+      document.addEventListener('click', (e) => {
+        if (!btn.contains(e.target) && !hint.contains(e.target)) {
+          hint.classList.remove('visible');
+          btn.classList.remove('active');
+        }
+      });
+    })();
 
     // ─── Restore saved state from localStorage ───
     (function restoreState() {
